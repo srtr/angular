@@ -1,0 +1,81 @@
+<form [formGroup]="searchForm" novalidate (ngSubmit)="search(searchForm.value, searchForm.valid)">
+  <div class="row">
+    <div class="col">
+      <div class="col-md-4">
+        <label style="visibility: hidden">Market/Client Info</label>
+        <div class="form-group form-group-sm ">
+          <label>Market</label>
+          <select class="form-control" formControlName="market" (change)="marketChange($event.target.value)" required>
+                <option *ngFor="let marketOpt of marketsList" [value]="marketOpt">{{marketOpt}}</option>
+            </select>
+        </div>
+        <div class="form-group form-group-sm ">
+          <label>Client</label>
+          <select class="form-control" formControlName="client">
+                <option value="ALL" style="text-shadow: 0.5px 0.5px 0.5px black;">ALL</option>               
+                <option *ngFor="let clientOpt of clientsList" [value]="clientOpt">{{clientOpt}}</option>
+            </select>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="row">
+          <label>Order Info</label>
+          <div class="col">
+            <div class="col-md-6">
+              <div class="form-group form-group-sm ">
+                <label>Side</label>
+                <select class="form-control" formControlName="orderSide">
+                        <option *ngFor="let side of orderSides" [value]="side">{{side}}</option>
+                    </select>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group form-group-sm ">
+                <label>Order Type</label>
+                <select class="form-control" formControlName="orderType">
+                        <option *ngFor="let type of orderTypes" [value]="type">{{type}}</option>
+                    </select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div class="col-md-6">
+              <div class="form-group form-group-sm ">
+                <label>Price</label>
+                <input type="number" min="0" class="form-control" placeholder="Price" formControlName="orderPrice">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group form-group-sm ">
+                <label>Quantity</label>
+                <input type="number" min="1" class="form-control" placeholder="Quantity" formControlName="orderQuantity">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="form-group form-inline form-group-sm ">
+        <div class="row">
+          <div class="col-md-8 col-md-offset-3">
+            <div class="col-md-2 col-md-offset-1">
+              <button type="submit" class="btn btn-primary btn-sm form-control">Search</button>
+            </div>
+            <div class="col-md-1">
+              <div class="btn btn-default btn-sm form-control" (click)="resetForm()">Clear</div>
+            </div>
+            <div class="col-md-4 col-md-offset-2">
+              <label class="checkbox-inline"><input type="checkbox" formControlName="showClients"> Show Clients </label>
+              <label class="checkbox-inline"> <input type="checkbox" formControlName="showOrders"> Show Orders </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
